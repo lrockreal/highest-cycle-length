@@ -52,7 +52,7 @@ $a_2 = (5 * 5) \text{ mod } 8 = 25 \text{ mod } 8 = 1$
 
 $a_3 = (1 * 5) \text{ mod } 8 = 5 \text{ mod } 8 = 5$
 
-$a_3$ is a repeat of $a_1$,
+$a_3$ is a repeat of $a_1$, so the cycle length of $5_8$ is $2$.
 
 Using this definition the **highest cycle length** of a base $b$ is the highest
 cycle length between all numbers in the interval $[1, b)$, defined as such

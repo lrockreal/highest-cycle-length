@@ -38,7 +38,7 @@ In the context of this program and my peer's research the **cycle length** of a
 number $i$ in a base $b$ is the number of unique ones-place digits observed in
 the sequence:
 
-$a_n = (a_{n-1} * i) \operatorname{mod} b$
+$a_n = (a_{n-1} * i) \text{ mod } b$
 
 $a_1 = i$
 
@@ -48,9 +48,9 @@ For example, let $i = 5$ and $b = 8$. Starting from $a_1$:
 
 $a_1 = 5$
 
-$a_2 = (5 * 5) \operatorname{mod} 8 = 25 \operatorname{mod} 8 = 1$
+$a_2 = (5 * 5) \text{ mod } 8 = 25 \text{ mod } 8 = 1$
 
-$a_3 = (1 * 5) \operatorname{mod} 8 = 5 \operatorname{mod} 8 = 5$
+$a_3 = (1 * 5) \text{ mod } 8 = 5 \text{ mod } 8 = 5$
 
 $a_3$ is a repeat of $a_1$,
 

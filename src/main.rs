@@ -64,21 +64,6 @@ fn highest_cyclength(b: u64) -> u64 {
     }
 }
 
-/// Modular exponentiation function.
-/// Calculates `(n^e) mod b`
-fn qmod(n: u64, mut e: u64, b: u64) -> u64 {
-    let mut qmod = 1;
-    let mut base = n % b;
-    while e > 0 {
-        if e % 2 == 1 {
-            qmod = (qmod * base) % b;
-        }
-        base = (base * base) % b;
-        e /= 2;
-    }
-    qmod
-}
-
 /// Returns the cycle length of `n` base `b`
 /// by calculating terms in the sequence:
 /// `a_n = (a_{n-1} * i) mod b`
@@ -87,13 +72,15 @@ fn qmod(n: u64, mut e: u64, b: u64) -> u64 {
 fn cyclength(n: u64, b: u64) -> u64 {
     let mut terms_seen = [false; GOAL];
     let mut term_idx = 1;
+    let mut term = n;
+    terms_seen[term as usize] = true;
     loop {
-        let term = qmod(n, term_idx, b) as usize;
-        if terms_seen[term] {
+        term = (term * n) % b;
+        term_idx += 1;
+        if terms_seen[term as usize] {
             break;
         }
-        terms_seen[term] = true;
-        term_idx += 1;
+        terms_seen[term as usize] = true;
     }
     term_idx - 1
 }

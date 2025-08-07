@@ -18,7 +18,6 @@ $ git clone https://www.github.com/lrockreal/highest-cycle-length.git
 ```rust
 // src/main.rs
 const GOAL: usize = 10000; // Calculate HCLs from base 2 to base 10000 inclusive.
-const THREADS: usize = 32; // Thread count, to optionally speed things up.
 ```
 
 3. Build and run using [Cargo](https://github.com/rust-lang/cargo):

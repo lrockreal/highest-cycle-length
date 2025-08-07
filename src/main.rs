@@ -1,41 +1,13 @@
-use std::thread::{self};
-
 use primes::is_prime;
+use rayon::prelude::*;
 
 const GOAL: usize = 10000;
-const THREADS: usize = 32;
 
 fn main() {
-    let mut hcls = [0; GOAL - 1];
-    let mut threads = vec![];
-
-    for thread_idx in 0..THREADS {
-        let thread = thread::spawn(move || {
-            let mut thread_hcls = [0; (GOAL - 1).div_ceil(THREADS)];
-
-            let mut b_idx = 0;
-            for b in ((thread_idx as u64 + 2)..=(GOAL as u64)).step_by(THREADS) {
-                thread_hcls[b_idx] = highest_cyclength(b);
-                if b % 100 == 0 {
-                    eprintln!("{b}");
-                }
-                b_idx += 1;
-            }
-
-            eprintln!("Worker {thread_idx} finished");
-
-            thread_hcls
-        });
-
-        threads.push(thread);
-    }
-
-    for (thread_idx, thread) in threads.into_iter().enumerate() {
-        let thread_hcls = thread.join().unwrap();
-        for i in 0..((GOAL - 2 - thread_idx) / THREADS + 1) {
-            hcls[(i * THREADS) + thread_idx] = thread_hcls[i];
-        }
-    }
+    let hcls: Vec<u64> = (2..=GOAL as u64)
+        .into_par_iter()
+        .map(highest_cyclength)
+        .collect();
 
     print!("[");
     for b in 0..(GOAL - 1) {

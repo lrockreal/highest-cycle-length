@@ -68,7 +68,7 @@ fn highest_cyclength(b: u64) -> u64 {
 /// by calculating terms in the sequence:
 /// `a_n = (a_{n-1} * i) mod b`
 /// `a_1 = i`
-/// Starting from `a_1` a repetition is found.
+/// Starting from `a_1` until a repetition is found.
 fn cyclength(n: u64, b: u64) -> u64 {
     let mut terms_seen = [false; GOAL];
     let mut term_idx = 1;
